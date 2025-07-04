@@ -21,16 +21,6 @@ const ordersRoutes = require('./routes/orders');
 app.use('/', ordersRoutes);
 app.use('/api', authRoutes);
 
-// 🔁 Servir frontend en producción
-if (process.env.NODE_ENV === 'production') {
-  const frontendPath = path.join(__dirname, '..', 'frontend', 'build');
-  app.use(express.static(frontendPath));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-  });
-}
-
 // Ruta base para verificar funcionamiento
 app.get('/', (req, res) => {
   res.send('API Puma conectada a MongoDB 🚀');
